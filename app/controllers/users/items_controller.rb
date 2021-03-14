@@ -1,2 +1,8 @@
-class ItemsController < ApplicationController
+class Users::ItemsController < ApplicationController
+  before_action :authenticate_user!, except: :index
+  
+  def index
+  end
+  
+  
 end
