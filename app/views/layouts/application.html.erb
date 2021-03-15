@@ -12,13 +12,29 @@
   <body>
     <header>
     <nav>
+      <%= image_tag('img/logo1.png', class: 'logo-image') %>
       <ul>
         <% if user_signed_in? %>
+          <li><%= link_to "マイページ", customers_path %></li>
+          <!--リンクは適当-->
+          <li><%= link_to "商品一覧", items_path %></li>
+          <li><%= link_to "カート", about_path %></li>
+          <!--リンクは適当-->
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
         <% elsif admin_signed_in? %>
           <li>管理者</li>
+          <li><%= link_to "商品一覧", about_path %></li>
+          <!--リンクは適当-->
+          <li><%= link_to "会員一覧", about_path %></li>
+          <!--リンクは適当-->
+          <li><%= link_to "注文商品一覧", about_path %></li>
+          <!--リンクは適当-->
+          <li><%= link_to "ジャンル一覧", about_path %></li>
+          <!--リンクは適当-->
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
         <% else %>
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "商品一覧", items_path %></li>
           <li><%= link_to "新規登録", new_user_registration_path %></li>
           <li><%= link_to "ログイン", new_user_session_path %></li>
         <% end %>

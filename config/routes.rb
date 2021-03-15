@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to:  'users/homes#top'
+  get '/about' => 'users/homes#about'
 
   devise_for :admins, controllers: {
   sessions: 'admins/sessions'
@@ -16,11 +17,15 @@ Rails.application.routes.draw do
     get 'users/password/new' => 'users/passwords#new', as: 'new_user_password'
   end
 
-  namespace :users do
-  resources :items, only: [:index]
+  scope module: :users do
+  resources :customers, only: [:index]
+  get 'items/:id' => 'users/items#show', as: 'item_user'
+  resources :cart_items, only: [:index]
+  resources :cart_items, only: [:create, :update, :destroy]
+
  end
- 
-   namespace :admins do
+
+  scope module: :admins do
   resources :items, only: [:index]
  end
 
