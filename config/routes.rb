@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admins do
-    get 'items/index'
-  end
   root to:  'users/homes#top'
 
   devise_for :admins, controllers: {
